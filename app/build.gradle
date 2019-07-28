@@ -1,0 +1,84 @@
+apply plugin: 'com.android.application'
+
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
+apply plugin: 'kotlin-android-extensions'
+
+android {
+    compileSdkVersion Versions.compileSdk
+    defaultConfig {
+        applicationId "com.jignesh.postview"
+        minSdkVersion Versions.minSdkVersion
+        targetSdkVersion Versions.targetSdk
+        versionCode Versions.releaseVersionCode
+        versionName Versions.releaseVersionName
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        debug {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+androidExtensions {
+    experimental = true
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    // module dependencies
+    implementation project(ProjectModules.data)
+    implementation project(ProjectModules.domain)
+
+    implementation ProjectDependencies.constraintLayout
+    implementation ProjectDependencies.material
+
+    // dagger
+    kapt ProjectDependencies.daggerCompiler
+    implementation ProjectDependencies.daggerAndroid
+    kapt ProjectDependencies.daggerAnnotationProcessor
+    implementation ProjectDependencies.daggerAndroidSupport
+
+    // rxjava
+    implementation ProjectDependencies.rxKotlin
+    implementation ProjectDependencies.rxandroid
+
+
+    implementation ProjectDependencies.support
+    implementation ProjectDependencies.androidx_core
+
+    // Spin Kit
+    implementation ProjectDependencies.spinkit
+
+    //
+    implementation ProjectDependencies.picasso
+
+    implementation ProjectDependencies.lifecycle
+
+    // test
+    testImplementation ProjectTestDependencies.junit
+    androidTestImplementation ProjectTestDependencies.androidTestRunner
+    androidTestImplementation ProjectTestDependencies.androidTestRule
+    androidTestImplementation ProjectTestDependencies.espresso
+
+    androidTestImplementation ProjectTestDependencies.mockito
+    androidTestImplementation ProjectTestDependencies.mockitoInline
+    androidTestImplementation ProjectTestDependencies.mockitoKotlin
+    androidTestImplementation ProjectTestDependencies.kakao
+
+    kaptAndroidTest ProjectTestDependencies.daggerCompiler
+
+    testImplementation ProjectTestDependencies.mockito
+    testImplementation ProjectTestDependencies.mockitoInline
+    testImplementation ProjectTestDependencies.mockitoKotlin
+    testImplementation ProjectTestDependencies.lifecycleTesting
+
+}

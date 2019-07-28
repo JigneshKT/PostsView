@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Posts View</string>
+    <string name="post_listing_activity_title">Posts</string>
+    <string name="post_details_activity_title">Post details</string>
+    <string name="splash_screen_label">Magic begins</string>
+    <string name="comments_label">Comments:</string>
+    <string name="no_comments_label">Be first to comment!</string>
+</resources>
